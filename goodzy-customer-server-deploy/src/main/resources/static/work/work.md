@@ -1,0 +1,1 @@
+## static/work resources

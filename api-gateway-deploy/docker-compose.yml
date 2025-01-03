@@ -1,0 +1,16 @@
+version: '3'
+services:
+  gateway:
+    build: .
+    image: gateway
+    container_name: gateway
+    environment:
+      EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://eureka:8080/eureka
+    ports:
+      - "32000:8080"
+    networks:
+      - kosafinal
+
+networks:
+  kosafinal:
+    external: true

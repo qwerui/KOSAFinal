@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8080/eureka     #등록할 eureka server url
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: customer
+          uri: lb://customer:8080
+          predicates:
+            - Path=/api/customer/**
+        - id: seller
+          uri: lb://seller:8080
+          predicates:
+            - Path=/api/seller/**
